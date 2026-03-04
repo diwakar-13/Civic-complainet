@@ -7,12 +7,17 @@ import adminDashboard from "./routes/admin.route.js";
 const app = express();
 
 // middleware
+app.use(express.json());
+
+const allowedOrigins = ["http://localhost:5173", process.env.FRONTEND_URL];
+
 app.use(
   cors({
-    origin: process.env.VERCEL_URL,
+    origin: allowedOrigins,
+    methods: ["GET", "POST", "PUT", "DELETE"],
+    allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
-app.use(express.json());
 
 // create route
 app.use("/api/user", userAuthRouter);
@@ -21,4 +26,3 @@ app.use("/api/admin/role", promoteRouter);
 app.use("/api/admin/dashboard", adminDashboard);
 
 export default app;
-
