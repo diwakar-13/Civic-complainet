@@ -3,7 +3,7 @@ import axios from "axios";
 // create api so that we use everywhere
 
 const API = axios.create({
-  baseURL: "https://civic-complainet.onrender.com",
+  baseURL: "https://civic-complainet.onrender.com/api",
   withCredentials: false,
 });
 
