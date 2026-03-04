@@ -7,17 +7,18 @@ import adminDashboard from "./routes/admin.route.js";
 const app = express();
 
 // middleware
-app.use(express.json());
-
-const allowedOrigins = ["http://localhost:5173", process.env.FRONTEND_URL];
-
+// cors
 app.use(
   cors({
-    origin: allowedOrigins,
-    methods: ["GET", "POST", "PUT", "DELETE"],
+    origin: "https://civic-complainet.vercel.app",
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
     allowedHeaders: ["Content-Type", "Authorization"],
   }),
 );
+
+app.options("*", cors());
+
+app.use(express.json());
 
 // create route
 app.use("/api/user", userAuthRouter);

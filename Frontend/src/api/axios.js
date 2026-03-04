@@ -3,7 +3,7 @@ import axios from "axios";
 // create api so that we use everywhere
 
 const API = axios.create({
-  baseURL: import.meta.env.VITE_BASE_URL,
+  baseURL: "https://civic-complainet.onrender.com",
   withCredentials: false,
 });
 
@@ -12,8 +12,8 @@ const API = axios.create({
 API.interceptors.request.use((config) => {
   const token = localStorage.getItem("token");
   //   check if token exists
-  if(token){
-    config.headers.Authorization = `Bearer ${token}`
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
   }
   return config;
 });
