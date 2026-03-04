@@ -7,7 +7,11 @@ import adminDashboard from "./routes/admin.route.js";
 const app = express();
 
 // middleware
-app.use(cors());
+app.use(
+  cors({
+    origin: process.env.VERCEL_URL,
+  }),
+);
 app.use(express.json());
 
 // create route
@@ -17,3 +21,4 @@ app.use("/api/admin/role", promoteRouter);
 app.use("/api/admin/dashboard", adminDashboard);
 
 export default app;
+
